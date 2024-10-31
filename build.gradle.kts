@@ -1,4 +1,5 @@
 plugins {
+    `maven-publish`
     application
     kotlin("jvm") version "2.0.20"
     kotlin("plugin.serialization").version("2.0.20")
@@ -23,4 +24,16 @@ kotlin {
 
 application {
     mainClass.set("com.crafter.Modrinth")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "ru.magmigo"
+            artifactId = "discord-rpc"
+            version = version
+
+            from(components["kotlin"])
+        }
+    }
 }
